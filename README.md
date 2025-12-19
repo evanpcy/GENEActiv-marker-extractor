@@ -1,1 +1,1 @@
-# GENEActiv-marker-extractor
+# GENEActiv marker extractor
