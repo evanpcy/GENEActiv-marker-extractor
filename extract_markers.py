@@ -34,3 +34,9 @@ def bulk_extract_markers(in_dir: str, out_dir: str, create_dir: bool = True):
             markers = extract_markers(join(in_dir, entry.name))
             out_path = join(out_dir, f"{os.path.splitext(entry.name)[0]}_markers.csv")
             markers.to_csv(out_path, index = False)
+
+if __name__ == "__main__":
+    bulk_extract_markers(
+        in_dir = input("Enter input directory path: "),
+        out_dir = input("Enter output directory path: ")
+    )

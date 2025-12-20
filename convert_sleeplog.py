@@ -39,3 +39,8 @@ def bulk_convert_sleep_logs(in_dir: str, out_path: str = "sleep_log.csv"):
             logs = pd.concat([logs, sleep_log], axis=0)
     
     logs.to_csv(out_path, index = False) 
+
+if __name__ == "__main__":
+    bulk_convert_sleep_logs(
+        in_dir = input("Enter input directory path: ")
+    )
