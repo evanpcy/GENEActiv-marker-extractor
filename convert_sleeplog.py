@@ -3,7 +3,7 @@ import os
 from os import listdir
 from os.path import isfile, join
 
-def convert_sleep_log(filepath: str):
+def convert_sleeplog(filepath: str):
     df = pd.read_csv(filepath)
     
     # Convert 'time stamp' to datetime.time format
@@ -26,7 +26,7 @@ def convert_sleep_log(filepath: str):
     
     return(sleep_log)
 
-def bulk_convert_sleep_logs(in_dir: str, out_path: str = "sleep_log.csv"):
+def bulk_convert_sleeplogs(in_dir: str, out_path: str = "sleep_log.csv"):
     if not os.path.exists(in_dir):
         raise FileNotFoundError(f"Input directory '{in_dir}' does not exist.")
     
@@ -35,12 +35,12 @@ def bulk_convert_sleep_logs(in_dir: str, out_path: str = "sleep_log.csv"):
     for entry in os.scandir(in_dir):
         # Check if entry is a valid csv file
         if entry.is_file() and entry.name.endswith('.csv'):
-            sleep_log = convert_sleep_log(join(in_dir, entry.name))
+            sleep_log = convert_sleeplog(join(in_dir, entry.name))
             logs = pd.concat([logs, sleep_log], axis=0)
     
     logs.to_csv(out_path, index = False) 
 
 if __name__ == "__main__":
-    bulk_convert_sleep_logs(
+    bulk_convert_sleeplogs(
         in_dir = input("Enter input directory path: ")
     )
